@@ -1,4 +1,7 @@
 //UC2
+let isUpdate = false;
+let employeePayrollObj = {};
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -21,6 +24,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     salary.addEventListener('input',function(){
         output.textContent=salary.value;
     });
+
+    checkForUpdate();
 });
 
 //UC3
@@ -33,6 +38,7 @@ const save=() =>{
         return;
     }
 }
+
 const createEmployeePayroll = () =>{
     let employeePayrollData = new EmployeePayrollData();
     try {
@@ -106,7 +112,46 @@ const setTextvalue=(id,value) => {
     const element = document.querySelector(id);
     element.textContent = value;
 }
+
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
+}
+
+// define check for update method if update is available
+const checkForUpdate = () => {
+    const employeePayrollJson = localStorage.getItem('editEmp');
+    isUpdate = employeePayrollJson ? true : false;
+    if(!isUpdate) return;
+    employeePayrollObj = JSON.parse(employeePayrollJson);
+    setForm();
+}
+
+// define setForm method which is used to set the element to be updated in payroll form
+const setForm = () => {
+    setValue('#name',employeePayrollObj._name);
+    setSelectedValues('[name=profile]',employeePayrollObj._profilePic);
+    setSelectedValues('[name=gender]',employeePayrollObj._gender);
+    setSelectedValues('[name=department]',employeePayrollObj._department);
+    setValue('#salary',employeePayrollObj._salary);
+    setTextvalue('.salary-output',employeePayrollObj._salary);
+    setValue('#notes',employeePayrollObj._note);
+    let date = (employeePayrollObj._startDate).split(" ");
+    setValue('#day',day[0]);
+    setValue('#month',date[1]);
+    setValue('#year',date[2]);
+}
+
+// defining methods used in set form
+const setSelectedValues = (propertyValue, value) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        if(Array.isArray(value)){
+            if(value.includes(item.value)){
+                item.checked = true;
+            }
+        }else if (item.value === value){
+            item.checked = true;
+        }
+    });
 }
