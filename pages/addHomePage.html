@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap">
+    <title>Employee Payroll Form</title>
+</head>
+
+<body>
+    <header class="header-content header">
+        <div class="logo-content">
+            <img src="../assets/homeIcon.png" alt="Image" style="height: 50px; width: 50px;">
+            <div>
+                <span class="emp-text">Employee</span><br>
+                <span class="emp-text emp-payroll">Payroll</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- UC2 -->
+    <div class="main-content">
+        <div class="header-content">
+            <div class="emp-details-text">
+                <strong>Employee Details</strong> <div class="emp-count"></div>
+            </div>
+            <a href="../pages/employeePayroll.html" class="add-button">
+                <img src="../assets/addIcon.png" alt="">Add User
+            </a>
+        </div>
+    </div> <!--header-content-->
+
+    <!-- UC3 -->
+  <div class="table-main">
+    <table id="display" class="table"></table>
+   </div>
+   <script defer src="../js/home.js"></script>
+   <script defer src="../js/newPayroll.js"></script>
+   <script defer src="../js/siteProperties.js"></script>
+   <script defer src="../js/utility.js"></script>
+   <script defer src="../js/payroll.js"></script>
+</body>
+</html>
